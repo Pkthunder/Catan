@@ -97,7 +97,7 @@ int MainMenu::Run(sf::RenderWindow &Win)
 		return (-1);
 	}
 	background.setTexture(background_pic);
-	background.setScale(0.4f, 0.55f);
+	background.setScale(0.4f, 0.6f);
 	drawQue.push_back((sf::Drawable*)&background);
 	std::cout << "Background Created!" << endl << endl;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

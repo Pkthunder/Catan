@@ -108,7 +108,7 @@ unsigned int Map::count = 0;
 vector<ResourceType> Map::typeList;
 
 //constructor
-Map::Map(unsigned int limit)
+Map::Map(unsigned int limit) : bgTile(sf::CircleShape(((radius+5.0f)*(limit+2.0f))+10, 6))
 {
 	cout << "Creating Map..." << endl << endl;
 
@@ -119,6 +119,13 @@ Map::Map(unsigned int limit)
 	typeList.push_back(Whet);
 	typeList.push_back(Wood);
 	random_shuffle(typeList.begin(), typeList.end());
+
+	//format background tile
+	bgTile.setFillColor(sf::Color::Yellow);
+	sf::FloatRect bgRect = bgTile.getLocalBounds();
+	bgTile.setOrigin( (bgRect.width/2.0f) + bgRect.left, (bgRect.height/2.0f) + bgRect.top );
+	bgTile.setPosition(SCRNWIDTH/2, SCRNHEIGHT/2);
+
 
 	//create lone "tier 0" tile
 	createTile(sf::Vector2f(SCRNWIDTH/2, SCRNHEIGHT/2));
@@ -163,12 +170,26 @@ Map::Map(unsigned int limit)
 
 void Map::createTile(sf::Vector2f pos)
 {
-	unsigned int randVal;
+	unsigned int randVal = valDist(generator);
 
-	do { 
-		randVal = valDist(generator); 
-	}	while ( randVal == 7 ); //eliminates 7 from the range
+	//only need to generate 2-6 & 8-12
+	//aka 2-12 without 7
+	switch (randVal) { //switch eliminates 7's more effeciently
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+	case 6:		break; //no modification needed
 
+	case 7: //8
+	case 8: //9
+	case 9: //10
+	case 10: //11
+	case 11: //12
+				randVal++; //add 1 to achieve number commented above
+				break;
+	};
+	
 	if ( count > 4 ) {
 		count = 0;
 		random_shuffle(typeList.begin(), typeList.end()); //Each resource is place once, then array's order is shuffled
@@ -179,6 +200,7 @@ void Map::createTile(sf::Vector2f pos)
 
 void Map::drawMap(sf::RenderWindow& Win)
 {
+	Win.draw(bgTile);
 	for ( unsigned int i=0; i<mapVec.size(); i++ )
 	{
 		Win.draw(mapVec[i]->getTile());

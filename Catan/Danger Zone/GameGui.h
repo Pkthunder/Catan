@@ -47,7 +47,7 @@ public:
 	virtual void drawElement(sf::RenderWindow &Win);
 	void updateVictoryCount(const unsigned int value);
 	void updateKnightCount(const unsigned int value);
-	void updateResourceCount(const ResourceType type, const int value);
+	void updateResourceCount(Cost& wallet);
 
 };
 

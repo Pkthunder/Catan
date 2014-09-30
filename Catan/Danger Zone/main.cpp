@@ -27,6 +27,41 @@ ResourceType getResourceType( unsigned int index )
 
 	return Error;
 }
+
+//////////////////////////////////////////////////////////////////////
+//Cost Functions
+
+Cost::Cost( int c[5] )
+{
+	wood = c[0];
+	shep = c[1];
+	whet = c[2];
+	stone = c[3];
+	clay = c[4];
+}
+
+Cost::Cost( int w, int s, int wh, int st, int c )
+{
+	wood = w;
+	shep = s;
+	whet = wh;
+	stone = st;
+	clay = c;
+}
+
+bool Cost::operator==( Cost &other ) const
+{
+	return ( wood == other.wood && shep == other.shep &&
+		whet == other.whet && stone == other.stone &&
+		clay == other.clay );
+}
+
+bool Cost::operator!=( Cost &other ) const
+{
+	return ( !(*this == other) );
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //For Later Expansion
 //
 int main(int argc, char** argv)

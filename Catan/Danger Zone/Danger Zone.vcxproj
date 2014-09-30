@@ -84,20 +84,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameCards.cpp" />
+    <ClCompile Include="GameData.cpp" />
+    <ClCompile Include="GamePiece.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="GameGui.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapTile.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Screen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameCards.h" />
+    <ClInclude Include="GameData.h" />
+    <ClInclude Include="GamePiece.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="MapTile.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="GameGui.h" />
   </ItemGroup>

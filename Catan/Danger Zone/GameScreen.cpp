@@ -5,6 +5,7 @@
 #include "Button.h"
 #include "MapTile.h"
 #include "GameGui.h"
+#include "Game.h"
 #include "GameScreen.h"
 
 GameScreen::GameScreen()
@@ -23,10 +24,11 @@ int GameScreen::Run(sf::RenderWindow &Win)
 		return (-1);
 	}
 	background.setTexture(ocean);
-	background.setScale(1.2f, 1.2f);
+	background.setScale(1.3f, 1.3f);
 
 	Map m_map;
 	GameGui m_gui(buttonList);
+	Game m_game(m_gui);
 
 	sf::Event Event;
 	while (active && Win.isOpen())
@@ -44,6 +46,9 @@ int GameScreen::Run(sf::RenderWindow &Win)
             {
                 switch (Event.key.code)
                 {
+				case sf::Keyboard::R:
+					m_game.runTurn();
+					break;
 				case sf::Keyboard::Space:
                     Win.close();
                     break;

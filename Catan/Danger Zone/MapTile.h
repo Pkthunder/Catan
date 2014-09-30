@@ -45,7 +45,7 @@ private:
 class Map {
 private:
 	vector<MapTile*> mapVec;
-
+	sf::CircleShape bgTile;
 public:
 	Map(unsigned int limit = 4);
 

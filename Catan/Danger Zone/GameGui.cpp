@@ -37,7 +37,7 @@ void GameGui::drawGui(sf::RenderWindow &Win)
 
 PlayerGui* GameGui::getPlayerGui( const int playerId )
 {
-	return (PlayerGui*)guiVec[playerId-1];
+	return static_cast<PlayerGui*>(guiVec[playerId-1]);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -227,19 +227,11 @@ void PlayerGui::updateKnightCount(const unsigned int value)
 	knightCount.setString( std::string("Knights: ").append(to_string(value)) );
 }
 
-void PlayerGui::updateResourceCount(const ResourceType type, const int value)
+void PlayerGui::updateResourceCount(Cost& wallet)
 {
-	sf::Text text;
-
-	switch( type ) {
-	case Clay:		text = clayVal;		break;
-	case Shep:		text = shepVal;		break;
-	case Stone:		text = stoneVal;	break;
-	case Whet:		text = whetVal;		break;
-	case Wood:		text = woodVal;		break;
-	case Desert:
-	case Error:
-	default:		return;
-	}
-	text.setString( std::string("x ").append(to_string(value)) );
+	clayVal.setString( std::string("x ").append(to_string(wallet.clay)) );
+	woodVal.setString( std::string("x ").append(to_string(wallet.wood)) );
+	shepVal.setString( std::string("x ").append(to_string(wallet.shep)) );
+	stoneVal.setString( std::string("x ").append(to_string(wallet.stone)) );
+	whetVal.setString( std::string("x ").append(to_string(wallet.whet)) );
 }
